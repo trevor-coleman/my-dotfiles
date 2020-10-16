@@ -9,7 +9,7 @@ export LSCOLORS=ExGxCxDxBxegedabagacad
 alias ll='ls -lG'
 
 
-cat ~/configs/.wave
+cat ~/.wave
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
