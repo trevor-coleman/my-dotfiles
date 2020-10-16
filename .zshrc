@@ -61,7 +61,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git catimg lwd sudo web-search yarn dotenv emoji-clock fasd fzf
+  git catimg last-working-dir sudo web-search yarn dotenv emoji-clock fasd fzf
 )
 
 
