@@ -2,6 +2,9 @@
 
 ECHO installing zsh
 brew install zsh
+ECHO installing fzf
+brew install fzf
+PATH=$PATH:/usr/local/opt/fzf/bin
 chsh -s /usr/local/bin/zsh
 ECHO installing oh-myzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
