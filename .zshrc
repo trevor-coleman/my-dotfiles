@@ -1,7 +1,13 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$PATH:/Users/trevorcoleman/.dotnet/tools"
+export PATH="$PATH:/Users/trevorcoleman/bin"
+export PATH="$PATH:~/Library/Application Support/JetBrains/Toolbox/apps"
+export PATH="$PATH:/Library/PostgreSQL/13/bin"
+export GOOGLE_APPLICATION_CREDENTIALS="~/dev/tree-shadows-ede5622bee20.json"
+export AUTOENV_EDITOR="/Users/trevorcoleman/bin/subl"
 export NODE_ENV=development
-
+export VISUAL="mvim"
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -38,7 +44,7 @@ CASE_SENSITIVE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -61,10 +67,10 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git catimg last-working-dir sudo web-search yarn dotenv emoji-clock fasd fzf
+  git catimg last-working-dir sudo web-search yarn dotenv emoji-clock fasd fzf 
 )
-
-
+source ~/.zplug/init.zsh
+zplug "Tarrasch/zsh-autoenv"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -76,7 +82,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-Preferred editor for local and remote sessions
+#Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='subl'
 else
@@ -87,7 +93,7 @@ fi
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -96,7 +102,7 @@ fi
 #
 # Example aliases
 alias zshconfig="subl ~/.zshrc"
-# alias ohmyzsh="subl ~/.oh-my-zsh"
+alias ohmyzsh="subl ~/.oh-my-zsh"
 #
 alias cd..="cd .."
 alias cls='printf "\033c"'
@@ -115,12 +121,20 @@ function ssh-key
   {
     ssh-add ~/.ssh/$1
   }
-
+ZSH_DOTENV_PROMPT=true
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="$PATH:/Users/trevorcoleman/.dotnet/tools"
+
 
 eval "$(hub alias -s)"
-
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 eval "$(starship init zsh)"
+
+
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+source ~/.dotfiles/lib/zsh-autoenv/autoenv.zsh
