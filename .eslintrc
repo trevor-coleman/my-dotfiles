@@ -1,0 +1,113 @@
+module.exports = {
+  env: {
+    node: true,
+    browser: true,
+    jest: true,
+  },
+  extends: [
+    'airbnb-typescript',
+    'plugin:import/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:eslint-comments/recommended',
+    'plugin:jest/recommended',
+    'plugin:promise/recommended',
+    'plugin:unicorn/recommended',
+    'prettier',
+  ],
+  ignorePatterns: [
+    './vite.config.ts',
+    './vite.config.production.ts',
+    'scripts/**/*',
+    'build/**/*',
+    '.eslintrc.js',
+    '_templates/**/*',
+  ],
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.js', '.tsx', '.jsx', '.css.ts'],
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+      node: {},
+    },
+  },
+  plugins: [
+    'import',
+    '@typescript-eslint',
+    'eslint-comments',
+    'sort-destructure-keys',
+    'jest',
+    'promise',
+    'unicorn',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: ['./tsconfig.eslint.json'],
+    sourceType: 'module',
+    tsconfigRootDir: __dirname,
+  },
+  rules: {
+    // Too restrictive, writing ugly code to defend against a very unlikely scenario: https://eslint.org/docs/rules/no-prototype-builtins
+    'no-prototype-builtins': 'off',
+    // https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html
+    'import/no-default-export': 'error',
+    // Too restrictive: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
+    'react/destructuring-assignment': 'off',
+    // No jsx extension: https://github.com/facebook/create-react-app/issues/87#issuecomment-234627904
+    'react/jsx-filename-extension': 'off',
+    // Use function hoisting to improve code readability
+    'no-use-before-define': 'off',
+    // Allow most functions to rely on type inference. If the function is exported, then `@typescript-eslint/explicit-module-boundary-types` will ensure it's typed.
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      { functions: false, classes: true, variables: true, typedefs: true },
+    ],
+    // Common abbreviations are known and readable
+    'unicorn/prevent-abbreviations': 'off',
+    'unicorn/filename-case': [
+      'error',
+      {
+        case: 'kebabCase',
+      },
+    ],
+    // Airbnb prefers forEach
+    'unicorn/no-array-for-each': 'off',
+    // It's not accurate in the monorepo style
+    'import/no-extraneous-dependencies': 'off',
+    'import/no-unresolved': 'error',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    'unicorn/no-array-reduce': 'off',
+    'import/no-named-as-default-member': 'off',
+  },
+  overrides: [
+    {
+      files: ['./**/*.js', './**/.*.js', './**/*.stories.*'],
+      rules: {
+        // Allow `require()`
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/no-unsafe-call ': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
+        'unicorn/prefer-module': 'off',
+        '@typescript-eslint/*': 'off',
+        '@typescript-eslint/no-unsafe-return': 'off',
+        'require-await': 'off',
+        '@typescript-eslint/require-await': 'off',
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
+        'import/no-default-export': 'off',
+      },
+    },
+    {
+      files: ['vite.config.*', 'vite.config.*.*'],
+      rules: {
+        'import/no-default-export': 'off',
+      },
+    },
+  ],
+};
